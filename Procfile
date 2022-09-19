@@ -1,1 +1,1 @@
-web: gunicorn consolecollector.wsgi
+web: python manage.py migrate && gunicorn consolecollector.wsgi
