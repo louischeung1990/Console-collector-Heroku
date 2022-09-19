@@ -28,8 +28,14 @@ def console_detail(request, console_id):
 
 class ConsoleCreate(CreateView):
     model = Console
-    fields = '__all__'
-    
+    fields = ['name', 'brand', 'description', 'year']
+
+    def form_valid(self, form):
+        # Assign the loggin the user (self.request.user)
+        form.instance.user = self.request.user
+        # Let CreateView continue to do its job
+        return super().form_valid(form)
+
 class ConsoleUpdate(UpdateView):
     model = Console
     fields = ['description']
